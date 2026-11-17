@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Essay #{{ essay_id }} · IELTS Writing Coach{% endblock %}
+{% block content %}
+<p><a href="/history">← Back to history</a></p>
+<div class="grid" id="essay-detail" data-id="{{ essay_id }}">
+  <section class="card">
+    <h1>Essay #{{ essay_id }}</h1>
+    <p class="muted" id="essay-meta"></p>
+    <h2>Question</h2>
+    <p id="essay-question" class="prewrap"></p>
+    <h2>Essay</h2>
+    <p id="essay-text" class="prewrap"></p>
+  </section>
+  <section class="card">
+    <div id="result-body"></div>
+  </section>
+</div>
+{% endblock %}

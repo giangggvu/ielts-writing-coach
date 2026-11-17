@@ -1,0 +1,64 @@
+### IELTS Writing Coach — manual API calls
+### Works with the VS Code "REST Client" extension and JetBrains HTTP Client.
+
+@base = http://localhost:8000
+@email = demo@example.com
+@password = password123
+
+### Health check
+GET {{base}}/healthz
+
+### Register
+POST {{base}}/api/auth/register
+Content-Type: application/json
+
+{"email": "{{email}}", "password": "{{password}}"}
+
+### Log in (copy access_token into @token below)
+# @name login
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{"email": "{{email}}", "password": "{{password}}"}
+
+###
+@token = {{login.response.body.access_token}}
+
+### Who am I
+GET {{base}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Quota left today
+GET {{base}}/api/quota
+Authorization: Bearer {{token}}
+
+### Grade an essay (response is a Server-Sent Events stream)
+POST {{base}}/api/essays
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: text/event-stream
+
+{
+  "question": "Some people believe that university education should be free for everyone. To what extent do you agree or disagree?",
+  "feedback_language": "en",
+  "essay": "In many countries, the cost of higher education has risen sharply in recent decades. Some people argue that universities should not charge any fees at all. I partly agree with this view, because free education brings clear social benefits, but I also believe that some contribution from students is reasonable.\n\nOn the one hand, free university education gives every talented young person the same opportunity to study. Students from poor families often cannot afford high tuition fees, so they choose to work immediately after school. As a result, society loses many skilled doctors, engineers and teachers. In addition, graduates usually earn higher salaries and pay more tax, which means that the government eventually recovers much of the money it invests.\n\nOn the other hand, universities need large budgets to pay lecturers, build laboratories and support research. If the state pays for everything, taxpayers who never attended university have to cover the cost for others. Moreover, when education is completely free, some students may not take their studies seriously and may change courses many times without a clear plan.\n\nIn my opinion, the best solution is a mixed system. Tuition should be free or very cheap for students from low income families, while others could pay moderate fees or repay a loan after they start working. This approach keeps university open to everyone and still shares the cost fairly between students and society.\n\nIn conclusion, although free university education has important advantages, I believe a balanced model with targeted support is more sustainable for most countries."
+}
+
+### Too short: 422, no quota used, no AI call
+POST {{base}}/api/essays
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"question": "Some people believe that university education should be free.", "essay": "Too short."}
+
+### History (newest first)
+GET {{base}}/api/essays?limit=20&offset=0
+Authorization: Bearer {{token}}
+
+### Chart data (oldest first)
+GET {{base}}/api/essays/progress
+Authorization: Bearer {{token}}
+
+### One essay in detail (404 if it belongs to someone else)
+GET {{base}}/api/essays/1
+Authorization: Bearer {{token}}

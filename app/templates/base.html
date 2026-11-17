@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}IELTS Writing Coach{% endblock %}</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body data-page="{{ page }}">
+  <header class="topbar">
+    <a class="brand" href="/">IELTS Writing Coach</a>
+    <nav>
+      <a href="/" class="{{ 'active' if page == 'grade' }}">Grade an essay</a>
+      <a href="/history" class="{{ 'active' if page == 'history' }}">History</a>
+      <span id="who" class="who"></span>
+      <button id="logout" class="link hidden" type="button">Log out</button>
+    </nav>
+  </header>
+
+  <p class="disclaimer" role="note">
+    Band scores are AI <strong>estimates</strong> for practice only. They do not replace an
+    IELTS examiner. · Điểm band chỉ là <strong>ước tính</strong> của AI để luyện tập, không thay
+    thế giám khảo IELTS.
+  </p>
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <script src="{{ url_for('static', path='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid">
+  <section class="card">
+    <h1>Writing Task 2</h1>
+    <form id="grade-form" data-min="{{ min_words }}" data-max="{{ max_words }}">
+      <label>Question / Đề bài
+        <textarea name="question" rows="3" required minlength="20" maxlength="2000"
+          placeholder="Some people believe that... To what extent do you agree or disagree?"></textarea>
+      </label>
+      <label>Your essay / Bài viết
+        <textarea name="essay" rows="16" required></textarea>
+      </label>
+      <div class="row">
+        <span id="word-count" class="muted">0 words ({{ min_words }}–{{ max_words }})</span>
+        <label class="inline">Feedback in
+          <select name="feedback_language">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+      </div>
+      <p id="grade-error" class="error" role="alert"></p>
+      <div class="row">
+        <span id="quota" class="muted"></span>
+        <button id="grade-btn" type="submit">Grade my essay</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card" id="result" aria-live="polite">
+    <p class="muted" id="result-placeholder">Feedback will appear here while the AI writes it.</p>
+    <div id="result-body" class="hidden"></div>
+  </section>
+</div>
+{% endblock %}
