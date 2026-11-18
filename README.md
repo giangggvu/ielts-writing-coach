@@ -16,12 +16,12 @@ are validated before they are saved, and your history shows how your bands chang
 ## Features
 
 - Sign up / log in with email and password, JWT bearer tokens, Argon2 password hashing
-- Grade a Task 2 essay (150–600 words) and get:
+- Grade a Task 2 essay (150 - 600 words) and get:
   - a band for each criterion: Task Response, Coherence and Cohesion, Lexical Resource,
     Grammatical Range and Accuracy
   - an overall band using the official IELTS rounding rule
   - comments per criterion with **exact quotes** of mistakes from your essay
-  - 3–5 stronger rewrites of your own sentences
+  - 3 - 5 stronger rewrites of your own sentences
   - feedback in Vietnamese or English
 - Feedback streams live (Server-Sent Events); numbers are checked with Pydantic before saving
 - History: list, detail view, and a band-over-time chart
@@ -205,12 +205,12 @@ cho thấy band thay đổi thế nào qua các lần chấm.
 ### Tính năng
 
 - Đăng ký, đăng nhập bằng email và mật khẩu; xác thực bằng token JWT; mật khẩu băm bằng Argon2
-- Chấm bài Task 2 (150–600 từ), trả về:
+- Chấm bài Task 2 (150 - 600 từ), trả về:
   - band ước tính cho 4 tiêu chí: Task Response, Coherence and Cohesion, Lexical Resource,
     Grammatical Range and Accuracy
   - band tổng, làm tròn theo quy tắc chính thức của IELTS
   - nhận xét từng tiêu chí, **trích nguyên văn** lỗi trong bài
-  - 3–5 câu viết lại hay hơn
+  - 3 - 5 câu viết lại hay hơn
   - nhận xét bằng tiếng Việt hoặc tiếng Anh
 - Nhận xét hiện dần theo luồng (Server-Sent Events); điểm số được Pydantic kiểm tra rồi mới lưu
 - Lịch sử: danh sách bài, xem chi tiết, biểu đồ band qua các lần chấm
@@ -242,7 +242,7 @@ PostgreSQL, kiểm tra migration khớp với model và build image Docker.
 **Phát luồng chữ, kiểm tra số.** Mô hình trả lời theo một giao thức nhỏ: bốn khối nhận xét
 `### TIÊU_CHÍ`, rồi một khối `### JSON`. Bộ phân tích luồng đẩy chữ nhận xét ra trình duyệt
 ngay khi tới, còn JSON chỉ được giữ lại. Khi luồng kết thúc, JSON được Pydantic kiểm tra
-(band nguyên 0–9, 3–5 câu viết lại, đúng tên tiêu chí) rồi mới ghi điểm vào cơ sở dữ liệu.
+(band nguyên 0 - 9, 3 - 5 câu viết lại, đúng tên tiêu chí) rồi mới ghi điểm vào cơ sở dữ liệu.
 Nhờ vậy giao diện phản hồi nhanh mà không bao giờ lưu một con số chưa kiểm tra.
 
 **Làm tròn chính thức, dùng Decimal.** Band tổng là trung bình 4 tiêu chí, làm tròn theo quy
