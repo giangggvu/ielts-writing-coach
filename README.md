@@ -11,7 +11,7 @@ are validated before they are saved, and your history shows how your bands chang
 
 > Scores are AI estimates for practice only. They do not replace an IELTS examiner.
 
-![Grading page](docs/screenshot-grade.png)
+![Grading page](docs/Screenshot.png)
 
 ## Features
 
